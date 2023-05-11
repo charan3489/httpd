@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install httpd
+      action: yum pkg=httpd state=present
+
+    - name: start httpd
+      service: name=httpd state=started
+
+    - name: install git
+      action: yum pkg=git state=present
+
+    - name: git integration
+      git:
+        repo: https://github.com/charan3489/httpd.git
+        dest: /var/www/html/
+
+    - name: restart httpd
+      service: name=httpd state=restarted
