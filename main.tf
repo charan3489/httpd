@@ -38,6 +38,9 @@ Name = "my-igw"
 
 resource "aws_eip" "ip" {
 vpc = true
+tags = {
+  Name = "my-eip"
+}
 }
 
 resource "aws_nat_gateway" "ngw" {
@@ -115,6 +118,7 @@ instance_type = "t2.micro"
 security_groups = [aws_security_group.sg.id]
 subnet_id = aws_route_table.pubrt.id
 availability_zone = "ap-south-1a"
+associate_public_ip_address = true
 key_name = "ansible"
 user_data = <<EOF
 #!/bin/bash
@@ -136,6 +140,7 @@ instance_type = "t2.micro"
 security_groups = [aws_security_group.sg.id]
 subnet_id = aws_route_table.prirt.id
 availability_zone = "ap-south-1a"
+associate_public_ip_address = true
 key_name = "ansible"
 user_data = <<EOF
 #!/bin/bash
