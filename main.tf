@@ -37,7 +37,7 @@ Name = "my-igw"
 }
 
 resource "aws_eip" "ip" {
-vpc = true
+domain = vpc
 tags = {
   Name = "my-eip"
 }
